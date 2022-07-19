@@ -120,7 +120,7 @@
         if (id == "") {
             addNew(data);
         } else {
-            updateNew(data);
+            updateData(data);
         }
     });
     function addNew(data) {
@@ -150,6 +150,22 @@
             },
             error: function (error) {
             	window.location.href = "${NewURL}?type=list&maxPageItem=2&page=1&message=error_system";
+            }
+        });
+    }
+
+    function updateData(data){
+        $.ajax({
+            url:'${APIurl}',
+            type:'PUT',
+            contentType:'application/json',
+            data:JSON.stringify(data),
+            dataType:'json',
+            success:function (result) {
+                console.log(result);
+            },
+            error:function (error) {
+                console.log(error);
             }
         });
     }

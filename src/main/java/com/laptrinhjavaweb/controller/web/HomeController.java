@@ -56,12 +56,16 @@ public class HomeController extends HttpServlet {
 			UserModel model = FormUtil.toModel(UserModel.class, request);
 			model = userService.findByUserNameAndPasswordAndStatus(model.getUserName(), model.getPassword(), 1);
 			if (model != null) {
+				//usermodel display infomation of user when login
 				SessionUtil.getInstance().putValue(request, "USERMODEL", model);
 				if (model.getRole().getCode().equals("USER")) {
 					response.sendRedirect(request.getContextPath()+"/trang-chu");
 				} else if (model.getRole().getCode().equals("ADMIN")) {
 					response.sendRedirect(request.getContextPath()+"/admin-home");
+				} else {
+					response.sendRedirect("https://zingnews.vn/");
 				}
+
 			} else {
 				response.sendRedirect(request.getContextPath()+"/dang-nhap?action=login&message=username_password_invalid&alert=danger");
 			}

@@ -41,6 +41,7 @@ public class NewController extends HttpServlet {
 			model.setTotalItem(newService.getTotalItem());
 			model.setTotalPage((int) Math.ceil((double) model.getTotalItem() / model.getMaxPageItem()));
 			view = "/views/admin/new/list.jsp";
+                  //create and edit. if is null then is create else is edit
 		} else if (model.getType().equals(SystemConstant.EDIT)) {
 			if (model.getId() != null) {
 				model = newService.findOne(model.getId());

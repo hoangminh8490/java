@@ -14,6 +14,7 @@ public class SessionUtil {
     }
 
     public void putValue(HttpServletRequest request, String key, Object value) {
+        //create session
         request.getSession().setAttribute(key, value);
     }
 
